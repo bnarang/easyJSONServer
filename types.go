@@ -1,6 +1,9 @@
 package main
 
-type hub struct {
-	start chan string
-	stop  chan string
+import "net/http"
+
+type mockServer struct {
+	http.Server
+	start chan bool
+	stop  chan bool
 }
