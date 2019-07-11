@@ -3,7 +3,14 @@ package main
 import "net/http"
 
 type mockServer struct {
-	http.Server
-	start chan bool
-	stop  chan bool
+	start     chan bool
+	stop      chan bool
+	serveInfo *http.Server
+	handles   []string
 }
+
+type handler struct {
+	http.HandlerFunc
+}
+
+type handlers map[string]*handler

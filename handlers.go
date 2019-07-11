@@ -13,8 +13,12 @@ func landingPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string("Test successful"))
 }
 
-func addRouter(w http.ResponseWriter, r *http.Request) {
+func (m *mockServer) addRouter(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string("Add a router"))
+	m.handles = append(m.handles, "/test1")
+	fmt.Println("M Handles are :", m.handles)
+	fmt.Fprintf(w, string("Router Added"))
+
 }
 
 func (m *mockServer) killRouter(w http.ResponseWriter, r *http.Request) {
