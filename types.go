@@ -3,10 +3,11 @@ package main
 import "net/http"
 
 type mockServer struct {
-	start     chan string
-	stop      chan string
-	serveInfo map[string]*http.Server
-	handles   map[string][]string
+	start      chan string
+	stop       chan string
+	serveInfo  map[string]*http.Server
+	handles    map[string][]string
+	handleData map[string]string
 }
 
 type handler struct {

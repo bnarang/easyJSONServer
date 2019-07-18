@@ -16,6 +16,7 @@ func newServer() *mockServer {
 	m.stop = make(chan string)
 	m.handles = make(map[string][]string, 3)
 	m.serveInfo = make(map[string]*http.Server, 3)
+	m.handleData = make(map[string]string, 3)
 	return m
 }
 
@@ -35,7 +36,7 @@ func (m *mockServer) setupServer() {
 			m.handles[port] = append(m.handles[port], "/")
 			fmt.Println("Port handlers are :", port, m.handles[port])
 			for _, h := range m.handles[port] {
-				router.HandleFunc(h, mockLandingPage)
+				router.HandleFunc(h, m.mockHandler)
 			}
 			newS.Handler = router
 			m.serveInfo[port] = &newS

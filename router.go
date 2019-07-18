@@ -17,9 +17,11 @@ func router() *mux.Router {
 }
 
 func (m *mockServer) controlRouter() *mux.Router {
+
 	r := mux.NewRouter()
 	r.HandleFunc("/addRouter/{port}/{handle}", m.addRouter)
 	r.HandleFunc("/killRouter/{port}", m.killRouter)
 	r.HandleFunc("/startRouter/{port}", m.startRouter)
+	r.HandleFunc("/postJSON/{port}/{handle}", m.postJSON)
 	return r
 }
